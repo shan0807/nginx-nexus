@@ -1,0 +1,7 @@
+---
+- name: install tuned
+  yum:
+    name: tuned
+    state: present
+- command: tuned-adm profile latency-performance
+- command: tuned-adm active

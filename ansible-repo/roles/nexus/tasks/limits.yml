@@ -1,0 +1,17 @@
+---
+# task to set limits for security
+- name: set limits hard for root user nofile
+  lineinfile: dest=/etc/security/limits.conf state=present regexp="root            hard    nofile      16384"
+              insertbefore="^# End of file" line="root            hard    nofile     16384"
+
+- name: set limits soft for root user no file
+  lineinfile: dest=/etc/security/limits.conf state=present regexp="root            soft    nofile      16384"
+              insertbefore="^# End of file" line="root            soft    nofile      16384"
+
+- name:  set limits hard for root user nproc
+  lineinfile: dest=/etc/security/limits.conf state=present regexp="root            hard    nproc      16384"
+              insertbefore="^# End of file" line="root            hard    nproc      16384"
+
+- name: set limits soft for root user nproc
+  lineinfile: dest=/etc/security/limits.conf state=present regexp="root            soft    nproc      16384"
+              insertbefore="^# End of file" line="root            soft    nproc      16384"

@@ -1,0 +1,5 @@
+---
+# clean-up task for nexus
+
+- name: delete the tar files not being used
+  command: rm -rf /tmp/nexus-2.14.1-01-bundle.tar.gz add-user.sh admin-user.xml read-only-user.xml

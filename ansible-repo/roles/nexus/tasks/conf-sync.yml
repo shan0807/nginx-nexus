@@ -1,0 +1,22 @@
+---
+# tasks file to copy scripts to repo machines
+
+- name: copy backup conf script to remote machine repo-2
+  copy:
+    src: ../files/backup-conf.sh 
+    dest: /tmp
+    owner: root
+    group: root
+    mode: 0750
+  when: inventory_hostname=="repo-2.compose.atos.local"
+  become: yes
+
+- name: copy conf-copy script to copy conf file from repo-1 to repo-2
+  copy:
+    src: ../files/conf-copy.sh
+    dest: /tmp
+    owner: root
+    group: root
+    mode: 0750
+  when: inventory_hostname=="repo-1.compose.atos.local"
+  become: yes

@@ -1,0 +1,19 @@
+---
+# tasks file to add a backup and master for nexus
+
+- lineinfile:
+    dest: /etc/nginx/conf.d/nexus.conf
+    state: present
+    regexp: 'server repo-1.compose.atos.local:8081;'
+    line: '     server repo-1.compose.atos.local:8081 backup;'
+  when: inventory_hostname=="lb-2.compose.atos.local"
+
+
+- lineinfile:
+    dest: /etc/nginx/conf.d/nexus.conf
+    state: present
+    regexp: 'server repo-2.compose.atos.local:8081;'
+    line: '     server repo-2.compose.atos.local:8081 backup;'
+  when: inventory_hostname=="lb-1.compose.atos.local"
+
+

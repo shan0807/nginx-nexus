@@ -1,0 +1,11 @@
+---
+# defaults file for nexus
+nexus_version: 2.14.1-01
+
+nexus_server_port: 8081
+nexus_server_host: 0.0.0.0
+
+http_port: 80
+nfs_port: 2049
+
+nexus_enable_oracle_maven: no

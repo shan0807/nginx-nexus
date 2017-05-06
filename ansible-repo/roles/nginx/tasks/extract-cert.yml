@@ -1,0 +1,18 @@
+---
+# extract certificates from tar file
+
+- name: check cert directory
+  file:
+      path=/etc/nginx/cert
+      recurse=yes
+      state=directory
+
+
+- name: extract certificates from tar file
+  unarchive:
+    src: ../files/certificates.tar.gz
+    dest: /etc/nginx/cert
+#   copy: no
+  become: yes
+
+

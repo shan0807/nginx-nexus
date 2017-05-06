@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: shantanu jain
+  description: installation of iptables java
+  license: oracle
+
+  min_ansible_version: 2.2
+
+  platforms:
+  - name: EL
+    versions: 7
+
+  galaxy_tags:
+  - compose
+  - Java
+
+dependencies: []

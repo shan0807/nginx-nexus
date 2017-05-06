@@ -1,0 +1,5 @@
+---
+
+# Installation of nginx and nexus servers
+- include: nginx.yml
+- include: nexus.yml

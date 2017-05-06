@@ -1,0 +1,32 @@
+---
+# Tasks file to add user to nexus
+
+- name: create files for adding nexus users
+  command: touch /tmp/admin-user.xml
+  command: touch /tmp/read-only-user.xml
+
+- name: Add admin user to Nexus
+  template:
+    src: admin-user.xml.j2
+    dest: "/tmp/admin-user.xml"
+
+
+- name: Add read-only user to Nexus
+  template:
+    src: read-only-user.xml.j2
+    dest: "/tmp/read-only-user.xml"
+
+- name: copy add-user script to remote machine
+  copy:
+    src: ../files/add-user.sh
+    dest: /tmp
+    owner: root
+    group: root
+    mode: 0750
+  become: yes
+- pause:
+   seconds: 20
+   prompt: "Paused for nexus to show changes"
+
+- name: execute script to add the user
+  command: sh /tmp/add-user.sh 

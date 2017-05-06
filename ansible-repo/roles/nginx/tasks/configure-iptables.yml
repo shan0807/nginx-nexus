@@ -1,0 +1,13 @@
+---
+# Tasks to add ports in iptables
+
+- name: insert iptables rule to open port 443
+  lineinfile: dest=/etc/sysconfig/iptables state=present regexp="-A INPUT -p tcp -m state --state NEW -m tcp --dport {{https_port}} -j ACCEPT"
+              insertbefore="^-A INPUT -j REJECT" line="-A INPUT -p tcp -m state --state NEW -m tcp --dport {{https_port}} -j ACCEPT"
+
+- name: insert iptables rule to open port 80
+  lineinfile: dest=/etc/sysconfig/iptables state=present regexp="-A INPUT -p tcp -m state --state NEW -m tcp --dport {{nginx_port}} -j ACCEPT"
+              insertbefore="^-A INPUT -j REJECT" line="-A INPUT -p tcp -m state --state NEW -m tcp --dport {{nginx_port}} -j ACCEPT"
+
+  notify: restart iptables
+

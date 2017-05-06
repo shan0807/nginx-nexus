@@ -1,0 +1,49 @@
+---
+#configuration of nexsus server
+- name: configure sonatype.properties file
+  template:
+    src: sonatype.properties.j2
+    dest: "{{ nexus_home }}/conf/sonatype.properties"
+
+- name: configure nexus.properties file
+  template:
+    src: nexus.properties.j2
+    dest: "{{ nexus_home }}/conf/nexus.properties"
+
+
+
+- name: configure nexus
+  template:
+    src: wrapper.conf.j2
+    dest: "{{ nexus_home }}/bin/jsw/conf/wrapper.conf"
+
+- set_fact:
+    nexus_profile_file: "{{ user_home }}/.bash_profile"
+  when: ansible_os_family == "RedHat"
+
+- name: set nexus home
+  lineinfile:
+   dest: "{{ nexus_profile_file }}"
+   regexp: "{{ item.regexp }}"
+   line: "{{ item.line }}"
+   insertbefore: "export PATH"
+  with_items:
+    -
+      regexp: ^NEXUS_HOME=
+      line: "NEXUS_HOME={{ nexus_home }}"
+    -
+      regexp: ^PATH=\$NEXUS_HOME/bin
+      line: PATH=$NEXUS_HOME/bin:$PATH
+    -
+      regexp: ^export NEXUS_HOME
+      line: export NEXUS_HOME
+
+- name: set buffer size
+  lineinfile:
+        dest: /opt/nexus/nexus-2.14.1-01/conf/nexus.properties
+        line: "storage.diskCache.bufferSize=4096"
+        regexp: '^storage.diskCache.bufferSize'
+        state: 'present'
+
+- name: start service
+  command: sh /opt/nexus/nexus-2.14.1-01/bin/nexus restart

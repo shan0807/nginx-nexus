@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<user-request>
+  <data>
+    <userId>{{ read_only_username }}</userId>
+    <email>example@atos.net</email>
+    <status>active</status>
+    <firstName>read_only</firstName>
+    <resourceURI>http://localhost:8081/nexus/service/local/roles/repository-any-full</resourceURI>
+    <roles>
+      <role>site-all-read</role>
+        <role>repository-any-read</role>
+        <role>ui-basic</role>
+        <role>ui-system-feeds</role>
+        <role>nexus-yum-user</role>
+        <role>rubygems-all-read</role>
+        <role>ui-healthcheck-read</role>
+        <role>ui-search</role>
+        <role>repo-all-read</role>
+        <role>ui-repo-browser</role>
+        <role>npm-all-read</role>
+        <role>nuget-all-read</role>
+    </roles>
+    <lastName>read_only</lastName>
+    <password>{{ read_only_password }}</password>
+  </data>
+</user-request>

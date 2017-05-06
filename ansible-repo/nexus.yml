@@ -1,0 +1,15 @@
+---
+
+# Installation and configuration of nexus server
+
+- hosts: nexus
+  user: compose
+  become: yes
+  become_method: sudo
+  connection: ssh
+  roles:
+     - epel-repo
+     - iptables
+     - java
+     - nexus
+     - selinux

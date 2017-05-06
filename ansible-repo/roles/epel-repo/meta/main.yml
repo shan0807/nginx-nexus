@@ -1,0 +1,14 @@
+galaxy_info:
+  author: shantanu
+  description: EPEL repo installation and configuration.
+  company:
+  license: license (Apache)
+  min_ansible_version: 2.2
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  galaxy_tags: 
+    - epel-repo
+dependencies: []  

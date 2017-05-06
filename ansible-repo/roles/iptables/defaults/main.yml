@@ -1,0 +1,13 @@
+---
+iptables_accept_port:
+  - 22
+iptables_accept_address: []
+iptables_accept_line: []
+
+ip6tables_accept_port:
+  - 22
+ip6tables_accept_address: []
+ip6tables_accept_line: []
+
+iptables_template: iptables.j2
+ip6tables_template: ip6tables.j2

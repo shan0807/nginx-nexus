@@ -1,0 +1,34 @@
+---
+# tasks file for nexus
+
+- include: prepare.yml
+  become: yes
+
+- include: install.yml
+
+#- include: nexus-path.yml
+#  become_user: "{{ nexus_user }}"
+
+- include: configure.yml
+  become: yes
+  become_user: "{{ nexus_user }}"
+
+- include: limits.yml
+  become: yes
+
+- include: configure-iptables.yml
+  become: yes
+
+- include: nexus-url.yml
+  become: yes
+  become_user: "{{ nexus_user }}"
+
+- include: add-user.yml
+  become_user: "{{ nexus_user }}"
+
+- include: clean-up.yml
+  become_user: "{{ nexus_user }}"
+
+- include: conf-sync.yml
+  become_user: "{{ nexus_user }}"
+

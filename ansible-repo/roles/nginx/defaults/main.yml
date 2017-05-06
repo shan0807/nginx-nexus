@@ -1,0 +1,11 @@
+---
+# defaults file for ansible-nginx
+
+
+server1: repo-1.compose.atos.local:8081
+server2: repo-2.compose.atos.local:8081
+nexus_server: nexus.compose.canopy-cloud.com # please change the value according to the evnironment
+
+nginx_port: 80
+https_port: 443
+

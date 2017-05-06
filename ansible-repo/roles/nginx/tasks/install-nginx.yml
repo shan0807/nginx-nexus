@@ -1,0 +1,48 @@
+---
+# Install nginx server
+- name: install nginx server packages
+  yum:
+     name: nginx
+     state: present
+  when: "ansible_os_family == 'RedHat'"
+
+- name: copy nginx configuration
+  template: src=roles/nginx/templates/nginx.conf dest=/etc/nginx/
+
+- name: copy nexus configuration
+  template: src=roles/nginx/templates/nexus.conf dest=/etc/nginx/conf.d/
+
+- name: install CA certificate package
+  yum:
+     name: ca-certificates
+     state: latest
+
+# Add a backup and master for nexus
+
+- lineinfile:
+    dest: /etc/nginx/conf.d/nexus.conf
+    state: present
+    regexp: 'server repo-1.compose.atos.local:8081;'
+    line: '     server repo-1.compose.atos.local:8081 backup;'
+  when: inventory_hostname=="lb-2.compose.atos.local"
+
+- lineinfile:
+    dest: /etc/nginx/conf.d/nexus.conf
+    state: present
+    regexp: 'server repo-2.compose.atos.local:8081;'
+    line: '     server repo-2.compose.atos.local:8081 backup;'
+  when: inventory_hostname=="lb-1.compose.atos.local"
+
+- name: add nginx service to startup
+  command: systemctl enable nginx.service
+  become: yes
+  notify: restart nginx
+
+- name: allow httpd to connect to network
+  command: setsebool -P httpd_can_network_connect on
+  become: yes
+
+- name: enable SELinus bindings
+  command: setenforce 1
+  ignore_errors: true
+  become: yes

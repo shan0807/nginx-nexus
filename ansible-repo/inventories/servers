@@ -1,0 +1,8 @@
+[nexus]
+repo-2
+repo-1
+
+[nginx]
+lb-1
+lb-2
+

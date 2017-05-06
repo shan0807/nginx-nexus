@@ -1,0 +1,14 @@
+galaxy_info:
+  author: compose
+  description: EPEL repo installation and configuration.
+  company: Atos
+  license: license (Apache)
+  min_ansible_version: 2.2
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  galaxy_tags: 
+    - nginx
+dependencies: []  

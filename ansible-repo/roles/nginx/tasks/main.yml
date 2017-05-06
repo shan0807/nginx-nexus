@@ -1,0 +1,14 @@
+---
+# Tasks file for installation and configuration of nginx
+
+- include: configure-iptables.yml
+  become: yes
+
+- include: limits.yml
+
+- include: install-tuned.yml
+
+- include: install-nginx.yml
+  become: yes
+
+- include: extract-cert.yml

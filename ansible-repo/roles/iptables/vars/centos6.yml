@@ -1,0 +1,11 @@
+---
+iptables_packages:
+  - iptables
+  - iptables-ipv6
+
+iptables_service: iptables
+ip6tables_service: ip6tables
+
+iptables_start_enable:
+  - iptables
+  - ip6tables

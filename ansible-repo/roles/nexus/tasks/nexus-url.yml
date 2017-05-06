@@ -1,0 +1,9 @@
+---
+# Task to assign url to nexus
+
+- name: configure nexus.xml file
+  template:
+    src: nexus.xml.j2
+    dest: "{{ sonatype_home }}/conf/nexus.xml"
+  notify:
+    - restart nexus

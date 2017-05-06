@@ -1,0 +1,11 @@
+---
+
+# task to set limits for security
+- name: create directory for setting ulimits
+  file:
+      path=/lib/systemd/system/nginx.service.d
+      recurse=yes
+      state=directory
+
+- name: set ulimits
+  template: src=roles/nginx/templates/worker_files_limit.conf dest=/lib/systemd/system/nginx.service.d/worker_files_limit.conf

@@ -1,0 +1,16 @@
+---
+# handlers file for nexus
+
+- name: restart iptables
+  service: name=iptables state=restarted
+
+- name: restart nexus
+  command: sh /opt/nexus/nexus-2.14.1-01/bin/nexus restart
+  become: yes
+  become_user: "{{ nexus_user }}"
+ 
+- name: start nexus
+  command: sh /opt/nexus/nexus-2.14.1-01/bin/nexus start 
+  become: yes
+  become_user: "{{ nexus_user }}"
+

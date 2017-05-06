@@ -1,0 +1,11 @@
+---
+#task file for changing the nexus working directory
+
+- name: check if nexus work path exists
+  stat: path=/nexus/sonatype-work/nexus
+  register: check_path
+
+- name: create directory for nexus work 
+  command: mkdir /nexus
+  command: cp -R /opt/nexus/sonatype-work /nexus
+  when: check_path.stat.exists == false

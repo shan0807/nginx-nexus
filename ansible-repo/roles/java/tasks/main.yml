@@ -1,0 +1,19 @@
+---
+- name: include global  variables.
+  include_vars: main.yml
+
+- name: define java_packages.
+  set_fact:
+    java_packages: "{{ __java_packages | list }}"
+  when: java_packages is not defined
+
+# Setup/install tasks.
+- include: install.yml
+
+# Environment setup.
+- name: set JAVA_HOME if configured.
+  template:
+    src: java_home.sh.j2
+    dest: /etc/profile.d/java_home.sh
+    mode: 0644
+  when: java_home

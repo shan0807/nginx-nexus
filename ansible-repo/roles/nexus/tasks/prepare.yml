@@ -1,0 +1,19 @@
+---
+#
+- group:
+    name: "{{ nexus_group }}"
+    state: present
+
+- name: install unarchive packages
+  package: name={{ item }} state=latest
+  with_items:
+    - unzip
+    - tar
+
+- name: check directory
+  file:
+      path=/opt/nexus/
+      recurse=yes
+      state=directory
+
+

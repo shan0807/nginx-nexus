@@ -1,0 +1,17 @@
+---
+# Tasks to add ports in iptables
+
+- name: insert iptables rule to open port 8081 for nexus
+  lineinfile: dest=/etc/sysconfig/iptables state=present regexp="-A INPUT -p tcp -m state --state NEW -m tcp --dport {{nexus_server_port}} -j ACCEPT"
+              insertbefore="^-A INPUT -j REJECT" line="-A INPUT -p tcp -m state --state NEW -m tcp --dport {{nexus_server_port}} -j ACCEPT"
+
+- name: insert iptables rule to open port 80  
+  lineinfile: dest=/etc/sysconfig/iptables state=present regexp="-A INPUT -p tcp -m state --state NEW -m tcp --dport {{http_port}} -j ACCEPT"
+              insertbefore="^-A INPUT -j REJECT" line="-A INPUT -p tcp -m state --state NEW -m tcp --dport {{http_port}} -j ACCEPT"
+
+- name: insert iptables rule to open port 2049 for nfs
+  lineinfile: dest=/etc/sysconfig/iptables state=present regexp="-A INPUT -p tcp -m state --state NEW -m tcp --dport {{nfs_port}} -j ACCEPT"
+              insertbefore="^-A INPUT -j REJECT" line="-A INPUT -p tcp -m state --state NEW -m tcp --dport {{nfs_port}} -j ACCEPT"
+
+  notify: restart iptables
+

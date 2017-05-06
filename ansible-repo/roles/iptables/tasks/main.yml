@@ -1,0 +1,8 @@
+---
+- include_vars: centos6.yml
+  when: ansible_distribution == 'CentOS' and ansible_distribution_major_version|int == 6
+
+- include_vars: centos7.yml
+  when: ansible_distribution == 'CentOS' and ansible_distribution_major_version|int == 7
+
+- include: install.yml

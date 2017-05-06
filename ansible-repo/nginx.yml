@@ -1,0 +1,11 @@
+---
+# Installation and configuration of nginx
+- hosts: nginx
+  user: compose
+  become: yes
+  become_method: sudo
+  connection: ssh 
+  roles:
+      - iptables
+      - epel-repo
+      - nginx
