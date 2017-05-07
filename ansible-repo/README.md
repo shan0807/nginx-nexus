@@ -9,5 +9,5 @@ ansible-playbook nginx.yml -i inventories/servers #For the installation of nginx
 
 Author Information
 ------------------
-compose
+Shantanu Jain
 

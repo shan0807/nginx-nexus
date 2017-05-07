@@ -3,7 +3,7 @@
 # Installation and configuration of nexus server
 
 - hosts: nexus
-  user: compose
+  user: root
   become: yes
   become_method: sudo
   connection: ssh

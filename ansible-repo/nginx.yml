@@ -1,7 +1,7 @@
 ---
 # Installation and configuration of nginx
 - hosts: nginx
-  user: compose
+  user: root
   become: yes
   become_method: sudo
   connection: ssh 
